@@ -1,0 +1,14 @@
+<h3>{@ERROR.title}</h3>
+<h4>{@ERROR.text}</h4>
+<F3:check if="{preg_match('/404/',@ERROR.code)}">
+	<F3:true>
+		<p>This page may have moved or is no longer available. Please try one of the following:</p>
+		<ul>
+			<li>Check the Web address you entered to make sure that it's correct.</li>
+			<li>Try to access the page directly from the <a href="/">{@site} home page</a> instead of using a bookmark. If the page has moved, please update your bookmark.</li>
+		</ul>
+	</F3:true>
+	<F3:false>
+		<p>{@ERROR.trace}</p>
+	</F3:false>
+</F3:check>

@@ -1,0 +1,22 @@
+<h3>{@pagetitle}</h3>
+<!--form name="login" method="post" action="http://192.168.140.86/receiver.php" -->
+<form name="login" method="post" action="/login" >
+	<F3:check if="{@message}">
+		<F3:true><p class="fail">{@message}</p></F3:true>
+	</F3:check>
+	<dl>
+		<dt><label for="userID">Kullanıcı Adı</label></dt>
+		<dd><input type="text" name="userID" id="userID" value="{@REQUEST.userID}"/></dd>
+		<dt><label for="password">Parola</label></dt>
+		<dd><input type="password" name="password" id="password"/></dd>
+		<F3:check if="{@message}">
+			<F3:true>
+				<p><img src="/captcha" alt="Captcha" title="Captcha security image"/></p>
+				<dt><label for="captcha">Onay Kodu</label><dt>
+				<dd><input type="text" name="captcha" id="captcha"/></dd>
+			</F3:true>
+		</F3:check>
+		<p/>
+		<dd><input type="submit" name="submit"/></dd>
+	</dl>
+</form>

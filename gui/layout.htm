@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<link rel="stylesheet" type="text/css" href="/min?base=css/&amp;files=reset.css,typo.css,demo.css"/>
+	<title>{@site}</title>
+</head>
+<body>
+	<div id="header">
+		<h2>{@site}</h2>
+		<div id="menu">
+			<ul>
+				<F3:repeat key="{@key}" index="{@option}" group="{@menu}">
+					<F3:check if="{@pagetitle==@key}">
+						<F3:true><li class="active">{@key}</li></F3:true>
+						<F3:false><li><a href="{@option}" title="{@key}">{@key}</a></li></F3:false>
+					</F3:check>
+				</F3:repeat></p>
+			</ul>
+		</div>
+	</div>
+	<div id="main">
+		<F3:include href="{@ERROR?'error':@template}.htm"/>
+	</div>
+	<hr/>
+	<div id="footer">
+		<p class="center">Copyright &copy; 2009-2010 Fat-Free Factory, All rights reserved<br/>This site is powered by the <a href="http://fatfree.sourceforge.net">PHP Fat-Free Framework</a> - Less Hype, More Meat</p>
+	</div>
+</body>
+</html>

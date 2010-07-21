@@ -1,0 +1,24 @@
+<h3>{@pagetitle}</h3>
+
+<F3:check if="{@SESSION.user}">
+	<F3:true>
+		<form name="kul" method="post" action="{@PARAMS.0}" >
+			<F3:check if="{@message}">
+				<F3:true><p class="fail">{@message}</p></F3:true>
+			</F3:check>
+			<dl>
+				<dt><label for="tc">TC Kimlik No</label></dt>
+				<dd><input type="text" name="tc" id="tc" value="{@REQUEST.tc}" size="11"/></dd>
+				<dt><label for="ad">Ad</label></dt>
+				<dd><input type="text" name="ad" id="ad" value="{@REQUEST.ad}" size="60"/></dd>
+				<dt><label for="soyad">Soyad</label></dt>
+				<dd><input type="text" name="soyad" id="soyad" value="{@REQUEST.soyad}" size="60"/></dd>
+				<p/>
+				<dd><input type="submit" name="submit"/></dd>
+			</dl>
+		</form>
+	</F3:true>
+	<F3:false>
+		<p>You must be logged in to perform this task.</p>
+	</F3:false>
+</F3:check>

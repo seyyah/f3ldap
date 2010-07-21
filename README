@@ -1,0 +1,3 @@
+Fat-free (F3) frameworkuyle olusturulan LDAP entegrasyonu.
+
+Depoyu çektikten sonra kişisel ayar değişikliğiniz olmadığı sürece `www` olarak değiştirip, `/var` klasörü altına taşıyın ve `$ sudo chown -R www-data:www-data /var/www` ile kullanıcı ve grup ayarını yapın.
