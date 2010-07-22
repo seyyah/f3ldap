@@ -94,6 +94,14 @@ F3::route('GET /rss',':rss');
 // Generate CAPTCHA image
 F3::route('GET /captcha',':captcha');
 
+F3::route('GET /ldap/search', 	':ldap_search');
+F3::route('GET /ldap/modify', 	':ldap_modify');
+F3::route('GET /ldap/add', 	':ldap_add');
+F3::route('GET /ldap/delete', 	':ldap_delete');
+F3::route('GET /ldap/rename', 	':ldap_rename');
+F3::route('GET /ldap/compare', 	':ldap_compare');
+F3::route('GET /info', ':info');
+
 // Execute application
 F3::run();
 
