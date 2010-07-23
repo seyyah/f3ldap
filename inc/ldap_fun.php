@@ -40,31 +40,37 @@ function ComparePassword($password, $hash)
 	return strcmp($original_hash, $new_hash);
 }
 
-function myldap_connect ($host, $port) {
+function myldap_connect () {
 	// Connecting to LDAP
-	$ds = ldap_connect($host, $port)
+	$ds = ldap_connect(F3::get('LDAP.host'), F3::get('LDAP.port'))
 		or die("Could not connect to $host");
 	if (! $ds) 
 	    trigger_error("Unable to connect to LDAP server", E_WARNING);
 	
 	ldap_set_option($ds, LDAP_OPT_PROTOCOL_VERSION, 3);
 
+	F3::set('LDAP.conn', $ds);
+
 	return $ds;
 }
 
-function myldap_bind ($ds, $dn, $password) {
-	$r = ldap_bind($ds, $dn, $password);
+function myldap_bind () {
+	$r = ldap_bind(F3::get('LDAP.conn'), F3::get('LDAP.admin'), F3::get('LDAP.passw'));
 	
 	if (! $r ) 
 		trigger_error("LDAP bind failed...", E_WARNING);
 	
+	F3::set('LDAP.bind', $r);
+
 	return $r;
 }
 
-function myldap_search ($ds, $dn, $filter) {
-	$dn = ldap_escape($dn);
+function myldap_search ($filter) {
+	//$dn = ldap_escape($dn);
 	//$filter = ldap_escape($filter);	
-
+	$ds = F3::get('LDAP.conn');
+	$dn = F3::get('LDAP.ou');
+	
 	$sr = ldap_search($ds, $dn, $filter);
 	$info = ldap_get_entries($ds, $sr);
 
@@ -83,7 +89,7 @@ function myldap_search ($ds, $dn, $filter) {
 	return $data;
 }
 
-function myldap_add ($ds, $dn, $data) {
+function myldap_add ($data) {
 	// prepare data
 	$info = array();
 	$info["objectclass"][0] = "organizationalPerson";
@@ -98,15 +104,18 @@ function myldap_add ($ds, $dn, $data) {
 	$info['userPassword'] = HashPassword($data["userPassword"]);
 
 	// add data to directory
-	$r = ldap_add($ds, "cn=".$info["cn"].",ou=moodleusers,".$dn, $info);
+	$r = ldap_add(F3::get('LDAP.conn'), "cn=".$info["cn"] . "," . F3::get('LDAP.ou'), $info);
 	
 	return $r;
 }
 
-function myldap_compare_password ($ds, $dn, $cn, $password, $attr="userPassword") {
+function myldap_compare_password ($cn, $password, $attr="userPassword") {
+	$ds = F3::get('LDAP.conn');
+	$dn = F3::get('LDAP.ou');
+
 	$attr = strtolower($attr);
 
-	$data = myldap_search($ds, $dn, "cn=$cn");
+	$data = myldap_search("cn=$cn");
 	
 	return ComparePassword($password, $data[0][$attr]);
 }

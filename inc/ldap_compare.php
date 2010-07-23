@@ -6,7 +6,7 @@ $password = "secret";
 
 echo "<hr /><b>cn = $cn kullanicisi icin password = $password karsilastiriliyor ...</b><br />";
 
-$r = myldap_compare_password (F3::get('LDAP.conn'), F3::get('LDAP.ou'), $cn, $password);
+$r = myldap_compare_password ($cn, $password);
 echo ($r == 0) ? "Basarili" : "Basarisiz";
 
 echo "<hr />";
@@ -16,7 +16,7 @@ $password = "falanfilan";
 
 echo "<hr /><b>cn = $cn kullanicisi icin password = $password karsilastiriliyor ...</b><br />";
 
-$r = myldap_compare_password (F3::get('LDAP.conn'), F3::get('LDAP.ou'), $cn, $password);
+$r = myldap_compare_password ($cn, $password);
 echo ($r == 0) ? "Basarili" : "Basarisiz";
 
 echo "<hr />Dizinlerin guncel hali...<br />";

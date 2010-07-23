@@ -2,7 +2,7 @@
 F3::call(':ldap_login');
 
 $cn = "*";
-$data = myldap_search(F3::get('LDAP.conn'), F3::get('LDAP.ou'), "cn=$cn");
+$data = myldap_search("cn=$cn");
 
 echo "<b>cn=$cn icin arama sonuclari ...</b> <br />";
 
