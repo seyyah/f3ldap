@@ -47,12 +47,13 @@ function myldap_connect ($host, $port) {
 	if (! $ds) 
 	    trigger_error("Unable to connect to LDAP server", E_WARNING);
 	
+	ldap_set_option($ds, LDAP_OPT_PROTOCOL_VERSION, 3);
+
 	return $ds;
 }
 
 function myldap_bind ($ds, $dn, $password) {
 	$r = ldap_bind($ds, $dn, $password);
-	echo "foo";
 	
 	if (! $r ) 
 		trigger_error("LDAP bind failed...", E_WARNING);

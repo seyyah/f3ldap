@@ -1,19 +1,13 @@
 <?php
-require_once "inc/ldap_common.php";
-require_once "inc/ldap_fun.php";
-
-require "ldap_search.php";
-
-$ds = myldap_connect($ldaphost, $ldapport);
-$r  = myldap_bind ($ds, $ldapbdn, $ldappw);
+F3::call(":ldap_search");
 
 $cn = "mahmut";
 $password = "secret";
 
 echo "<hr /><b>cn = $cn kullanicisi icin password = $password karsilastiriliyor ...</b><br />";
 
-$r = myldap_compare_password ($ds, "ou=moodleusers,$ldapdn", $cn, $password);
-echo "sonuc = $r";
+$r = myldap_compare_password (F3::get('LDAP.conn'), F3::get('LDAP.ou'), $cn, $password);
+echo ($r == 0) ? "Basarili" : "Basarisiz";
 
 echo "<hr />";
 
@@ -22,11 +16,11 @@ $password = "falanfilan";
 
 echo "<hr /><b>cn = $cn kullanicisi icin password = $password karsilastiriliyor ...</b><br />";
 
-$r = myldap_compare_password ($ds, "ou=moodleusers,$ldapdn", $cn, $password);
-echo "sonuc = $r";
+$r = myldap_compare_password (F3::get('LDAP.conn'), F3::get('LDAP.ou'), $cn, $password);
+echo ($r == 0) ? "Basarili" : "Basarisiz";
+
 echo "<hr />Dizinlerin guncel hali...<br />";
-require "ldap_search.php";
+F3::call(":ldap_search");
 
-@ldap_close($ds);
+ldap_close(F3::get('LDAP.conn'));
 ?>
-

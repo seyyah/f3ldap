@@ -1,23 +1,16 @@
 <?php
-require_once "inc/ldap_common.php";
-require_once "inc/ldap_fun.php";
+F3::call(":ldap_search");
 
-require "ldap_search.php";
-
-$ds = myldap_connect($ldaphost, $ldapport);
-$r  = myldap_bind ($ds, $ldapbdn, $ldappw);
-
-$cn_old = "mahmut";
+$cn = "mahmut";
 $cn_new = "murat";
 
-echo "<hr /><b>cn = $cn_old kullanicisi \"$cn_new\" ile rename ediliyor ...</b><br />";
+echo "<hr /><b>cn = $cn kullanicisi \"$cn_new\" ile rename ediliyor ...</b><br />";
 
-$r = @ldap_rename ($ds, "cn=$cn_old,ou=moodleusers,".$ldapdn, "cn=$cn_new", NULL, TRUE);
+$r = @ldap_rename (F3::get('LDAP.conn'), "cn=$cn," . F3::get('LDAP.ou'), "cn=$cn_new", NULL, TRUE);
 echo $r ? "Basarili" : "UYARI: boyle bir kayit bulunamadi";
 
 echo "<hr />Dizinlerin guncel hali...<br />";
-require "ldap_search.php";
+F3::call(":ldap_search");
 
-@ldap_close($ds);
+ldap_close(F3::get('LDAP.conn'));
 ?>
-

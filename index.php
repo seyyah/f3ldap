@@ -2,6 +2,7 @@
 
 // Use the Fat-Free Framework
 require_once 'lib/F3.php';
+require_once 'inc/ldap_fun.php';
 
 F3::set('RELEASE',FALSE);
 
@@ -28,6 +29,22 @@ F3::mset(
 // Common inline Javascript
 F3::set('extlink','window.open(this.href); return false;');
 
+F3::set('LDAP',
+	array(
+		'host' => '192.168.56.102',
+		'port' => 389,
+		'base' => 'dc=debuntu,dc=local',
+		'admin'=> 'cn=admin,dc=debuntu,dc=local',
+		'passw'=> 'secret',
+		'ou'   => 'ou=moodleusers,dc=debuntu,dc=local',
+		'conn' => '',
+		'bind' => ''
+	)
+);
+
+/* LDAP ozelinde
+F3::call(':db'); ile de (F3::set yoluyla) ds,r degiskenlerini.
+*/
 F3::set('DB',array('dsn'=>'sqlite:{@data}'));
 if (!file_exists(F3::get('data')))
 	// SQLite database doesn't exist; create it programmatically
@@ -101,6 +118,11 @@ F3::route('GET /ldap/delete', 	':ldap_delete');
 F3::route('GET /ldap/rename', 	':ldap_rename');
 F3::route('GET /ldap/compare', 	':ldap_compare');
 F3::route('GET /info', ':info');
+
+F3::route('GET /tester', 'tester');
+	function tester() {
+		echo F3::get('LDAP.conn');
+	}
 
 // Execute application
 F3::run();

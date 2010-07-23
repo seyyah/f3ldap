@@ -1,22 +1,15 @@
 <?php
-require_once "inc/ldap_common.php";
-require_once "inc/ldap_fun.php";
-
-require "ldap_search.php";
-
-$ds = myldap_connect($ldaphost, $ldapport);
-$r  = myldap_bind ($ds, $ldapbdn, $ldappw);
+F3::call(":ldap_search");
 
 $cn = "mahmut";
 
 echo "<hr /><b>cn = $cn kullanicisi siliniyor ...</b><br />";
 
-$r = @ldap_delete ($ds, "cn=$cn,ou=moodleusers,dc=debuntu,dc=local");
+$r = @ldap_delete (F3::get('LDAP.conn'), "cn=$cn," . F3::get('LDAP.ou'));
 echo $r ? "Silindi" : "UYARI: kayit bulunamadi";
 
 echo "<hr />Dizinlerin guncel hali...<br />";
-require "ldap_search.php";
+F3::call(":ldap_search");
 
-@ldap_close($ds);
+ldap_close(F3::get('LDAP.conn'));
 ?>
-

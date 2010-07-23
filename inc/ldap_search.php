@@ -1,12 +1,8 @@
 <?php
-require_once "inc/ldap_common.php";
-require_once "inc/ldap_fun.php";
-
-$ds = myldap_connect($ldaphost, $ldapport);
-$r  = myldap_bind ($ds, $ldapbdn, $ldappw);
+F3::call(':ldap_login');
 
 $cn = "*";
-$data = myldap_search($ds, "ou=moodleusers,".$ldapdn, "cn=$cn");
+$data = myldap_search(F3::get('LDAP.conn'), F3::get('LDAP.ou'), "cn=$cn");
 
 echo "<b>cn=$cn icin arama sonuclari ...</b> <br />";
 
@@ -21,6 +17,6 @@ for ($i=0; $i<$data["count"]; $i++) {
 	echo "<br />";
 }
 
-ldap_close($ds);
+//ldap_close(F3::get('LDAP.conn'));
 ?>
 
