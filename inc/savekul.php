@@ -6,18 +6,21 @@ F3::clear('message');
 // Form field validation
 F3::call(':common');
 
-if (!F3::exists('message')) {
-	// No input errors; add record to database
-	$blog=new Axon('kul');
-	$blog->copyFrom('REQUEST');
-	$blog->save();
-	// Return to home page; new blog entry should now be there
-	F3::reroute('/');	
 
-	/*$payload = json_encode(array(F3::get('REQUEST.title'), F3::get('REQUEST.entry')));
-	F3::reroute('http://192.168.140.86/receiver.php?payload=' . $payload );*/
+if (!F3::exists('message')) {
+	F3::call(':ldap_login');
+
+	$data = F3::get('REQUEST');
+	/*
+	print_r($data);
+	Array ( [cn] => Asad [sn] => Aaaaa [telephonenumber] => Aaaaaaa [postalcode] => Aaaaaaa [userpassword] => Aaaaa [submit] => GÃ¶nder )
+	*/
+	$r = @myldap_add ($data);	
+
+	// Return to home page; new blog entry should now be there
+	F3::reroute('/sorgu');	
 }
 // Display the blog form again
-F3::call(':createkul');
+//F3::call(':createkul');
 
 ?>

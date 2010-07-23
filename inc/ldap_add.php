@@ -1,8 +1,7 @@
 <?php
 F3::call(":ldap_search");
 
-$data = array ("cn"=>"mustafa", "sn"=>"kuru", "telephoneNumber"=>1235, "postalCode"=>33321, "userPassword"=>"secret");
-
+$data = array ("cn"=>"mustafa", "sn"=>"kuru", "telephonenumber"=>1235, "postalcode"=>33321, "userpassword"=>"secret");
 echo "<hr /><b>data = " . myprint_r($data) . "<br /> verisi ekleniyor...</b><br />";
 
 $r = @myldap_add ($data);

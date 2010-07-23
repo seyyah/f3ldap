@@ -99,9 +99,9 @@ function myldap_add ($data) {
 
 	$info["cn"] = $data["cn"];
 	$info["sn"] = $data["sn"];
-	$info["telephoneNumber"] = $data["telephoneNumber"];
-	$info["postalCode"] = $data["postalCode"];
-	$info['userPassword'] = HashPassword($data["userPassword"]);
+	$info["telephoneNumber"] = $data["telephonenumber"];
+	$info["postalCode"] = $data["postalcode"];
+	$info['userPassword'] = HashPassword($data["userpassword"]);
 
 	// add data to directory
 	$r = ldap_add(F3::get('LDAP.conn'), "cn=".$info["cn"] . "," . F3::get('LDAP.ou'), $info);

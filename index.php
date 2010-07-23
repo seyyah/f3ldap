@@ -69,12 +69,8 @@ F3::set('menu',
 	)
 );
 
-/**
-	Let's define our routes (HTTP method and URI) and route handlers;
-	Unlike other frameworks, Fat-Free's code elegance makes it easy for
-	novices and experts alike to understand what these lines do!
-**/
-F3::route('GET /',':showkul');
+F3::route('GET /',':showhome');
+F3::route('GET /sorgu',':sorgu');
 
 // Minify CSS; and cache page for 60 minutes
 F3::route('GET /min',':minified',3600);
@@ -113,7 +109,7 @@ F3::route('GET /captcha',':captcha');
 
 F3::route('GET /ldap/search', 	':ldap_search');
 F3::route('GET /ldap/modify', 	':ldap_modify');
-F3::route('GET /ldap/add', 	':ldap_add');
+F3::route('GET /ldap/create', 	':ldap_add');
 F3::route('GET /ldap/delete', 	':ldap_delete');
 F3::route('GET /ldap/rename', 	':ldap_rename');
 F3::route('GET /ldap/compare', 	':ldap_compare');
@@ -121,7 +117,7 @@ F3::route('GET /info', ':info');
 
 F3::route('GET /tester', 'tester');
 	function tester() {
-		echo F3::get('LDAP.conn');
+		echo myprint_r( F3::get('entries'));
 	}
 
 // Execute application
