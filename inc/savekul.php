@@ -21,6 +21,6 @@ if (!F3::exists('message')) {
 	F3::reroute('/sorgu');	
 }
 // Display the blog form again
-//F3::call(':createkul');
+F3::call(':createkul');
 
 ?>

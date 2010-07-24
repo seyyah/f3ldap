@@ -91,12 +91,12 @@ F3::route('GET /create',':createkul');
 	F3::route('POST /create',':savekul');
 
 // Edit blog entry
-F3::route('GET /edit/@tc',':editkul');
+F3::route('GET /edit/@cn',':editkul');
 	// Update blog entry
-	F3::route('POST /edit/@tc',':updatekul');
+	F3::route('POST /edit/@cn',':updatekul');
 
 // Delete blog entry
-F3::route('GET /delete/@tc',':erasekul');
+F3::route('GET /delete/@cn',':erasekul');
 
 // Logout
 F3::route('GET /logout',':logout');

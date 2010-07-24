@@ -1,1 +1,4 @@
 cache/*
+*.swp
+*.org
+*.bkp
