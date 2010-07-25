@@ -115,9 +115,9 @@ F3::route('GET /ldap/rename', 	':ldap_rename');
 F3::route('GET /ldap/compare', 	':ldap_compare');
 F3::route('GET /info', ':info');
 
-F3::route('GET /tester', 'tester');
+F3::route('GET /tester/@foo', 'tester');
 	function tester() {
-		echo myprint_r( F3::get('entries'));
+		echo F3::get('PARAMS.foo');
 	}
 
 // Execute application

@@ -1,6 +1,20 @@
 <?php
+function data4f3($data) {
+	if ($data['count'] == 1) {
+		unset($data['count']);
+
+		return  $data[0];
+	} else
+		trigger_error("Tek ogeli olacakti...", E_WARNING);
+}
+function f34data($f3) {
+	unset($f3['cn']);
+	unset($f3['submit']);
+	return $f3;
+}
+
 function myprint_r ($expression) {
-	return nl2br(print_r($expression, TRUE));
+	echo nl2br(print_r($expression, TRUE));
 }
 
 function ldap_escape($str, $for_dn = false)
