@@ -110,7 +110,7 @@ F3::route('GET /captcha',':captcha');
 F3::route('GET /ldap/search', 	':ldap_search');
 F3::route('GET /ldap/modify', 	':ldap_modify');
 F3::route('GET /ldap/create', 	':ldap_add');
-F3::route('GET /ldap/delete', 	':ldap_delete');
+F3::route('GET /ldap/erase', 	':ldap_erase');
 F3::route('GET /ldap/rename', 	':ldap_rename');
 F3::route('GET /ldap/compare', 	':ldap_compare');
 F3::route('GET /info', ':info');
