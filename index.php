@@ -21,8 +21,7 @@ F3::set('GUI','gui/');
 // Another way of assigning values to framework variables
 F3::mset(
 	array(
-		'site'=>'Kullanıcı Veritabanı',
-		'data'=>'db/demo.db'
+		'site'=>'Kullanıcı Veritabanı'
 	)
 );
 
@@ -45,11 +44,6 @@ F3::set('LDAP',
 /* LDAP ozelinde
 F3::call(':db'); ile de (F3::set yoluyla) ds,r degiskenlerini.
 */
-F3::set('DB',array('dsn'=>'sqlite:{@data}'));
-if (!file_exists(F3::get('data')))
-	// SQLite database doesn't exist; create it programmatically
-	// Call db.php inside the inc/ folder
-	F3::call(':db');
 
 // Define our main menu; this appears in all our pages
 F3::set('menu',
