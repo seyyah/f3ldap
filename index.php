@@ -70,7 +70,7 @@ F3::set('menu',
 );
 
 F3::route('GET /',':showhome');
-F3::route('GET /sorgu',':sorgu');
+F3::route('GET /search',':sorgu');
 
 // Minify CSS; and cache page for 60 minutes
 F3::route('GET /min',':minified',3600);
