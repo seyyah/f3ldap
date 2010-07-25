@@ -71,6 +71,7 @@ F3::set('menu',
 
 F3::route('GET /',':showhome');
 F3::route('GET /search',':sorgu');
+F3::route('GET /search_cn',':todo');
 
 // Minify CSS; and cache page for 60 minutes
 F3::route('GET /min',':minified',3600);
@@ -97,7 +98,7 @@ F3::route('GET /edit/@cn',':editkul');
 
 // Delete blog entry
 F3::route('GET /delete/@cn',':erasekul');
-F3::route('GET /rename/@cn',':ldap_rename');
+F3::route('GET /rename/@cn',':todo');
 
 // Logout
 F3::route('GET /logout',':logout');
