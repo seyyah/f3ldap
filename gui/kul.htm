@@ -8,7 +8,16 @@
 			</F3:check>
 			<dl>
 				<dt><label for="cn">Ad</label></dt>
-				<dd><input type="text" name="cn" id="cn" value="{@REQUEST.cn}" size="20"/></dd>
+				<dd>
+				<F3:check if="{@pagetitle}=='Kullanıcıyı güncelle'">
+					<F3:true>
+						<input type="text" name="cn" id="cn" value="{@REQUEST.cn}" size="20" disabled/> 
+					</F3:true>
+					<F3:false>
+						<input type="text" name="cn" id="cn" value="{@REQUEST.cn}" size="20"/>
+					</F3:false>
+				</F3:check>
+				</dd>
 				<dt><label for="sn">Soyad</label></dt>
 				<dd><input type="text" name="sn" id="sn" value="{@REQUEST.sn}" size="20"/></dd>
 				<dt><label for="telephonenumber">Telefon</label></dt>
