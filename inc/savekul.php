@@ -18,7 +18,7 @@ if (!F3::exists('message')) {
 	$r = @myldap_add ($data);	
 
 	// Return to home page; new blog entry should now be there
-	F3::reroute('/sorgu');	
+	F3::reroute('/');	
 }
 // Display the blog form again
 F3::call(':createkul');

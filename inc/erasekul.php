@@ -1,10 +1,11 @@
 <?php
 
+F3::call(':ldap_login');
+
 if (F3::get('SESSION.user')) {
-	$kul=new Axon('kul');
-	// Delete record from database
-	$kul->load('tc="{@PARAMS.tc}"');
-	$kul->erase();
+	$sorgu = "cn=" . F3::get('PARAMS.cn') . "," . F3::get('LDAP.ou');
+	$r = @ldap_delete (F3::get('LDAP.conn'), $sorgu);
+
 	// Return to home page
 	F3::reroute('/');
 }
