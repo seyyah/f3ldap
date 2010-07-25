@@ -97,6 +97,7 @@ F3::route('GET /edit/@cn',':editkul');
 
 // Delete blog entry
 F3::route('GET /delete/@cn',':erasekul');
+F3::route('GET /rename/@cn',':ldap_rename');
 
 // Logout
 F3::route('GET /logout',':logout');
